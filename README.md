@@ -34,24 +34,34 @@ StudioFlow/
 │   ├── src/
 │   │   ├── app.js       # Ana uygulama
 │   │   ├── routes/      # API endpoints
+│   │   ├── controllers/ # İstek kontrolcüleri
 │   │   ├── services/    # İş mantığı
-│   │   ├── middleware/  # Auth, rate limit
+│   │   ├── utils/       # Yardımcı fonksiyonlar
 │   │   └── data/        # Mock data
 │   └── package.json
 │
-├── frontend/            # Frontend (Static HTML/CSS/JS)
-│   ├── admin/          # Admin panel
-│   │   ├── dashboard.html
-│   │   ├── calendar.html
-│   │   ├── lessons.html
-│   │   ├── instructors.html
-│   │   ├── css/
-│   │   └── js/
-│   ├── display/        # Stüdyo ekranları
-│   │   ├── index.html
-│   │   ├── css/
-│   │   └── js/
+├── frontend-next/       # Frontend (Next.js 15 + TypeScript)
+│   ├── app/            # Next.js App Router
+│   │   ├── admin/      # Admin panel sayfaları
+│   │   │   ├── dashboard/
+│   │   │   ├── schedule/    # Program yönetimi
+│   │   │   ├── lessons/
+│   │   │   ├── instructors/
+│   │   │   ├── contents/
+│   │   │   └── screens/
+│   │   ├── display/    # Stüdyo ekranları
+│   │   └── login/      # Giriş sayfası
+│   ├── components/     # React bileşenleri
+│   │   ├── ui/         # Button, Input, Modal vb.
+│   │   └── admin/      # Sidebar vb.
+│   ├── store/          # Zustand state yönetimi
+│   ├── lib/            # API client ve utils
+│   ├── types/          # TypeScript tipleri
 │   └── package.json
+│
+├── frontend/            # Legacy Frontend (Static HTML/CSS/JS)
+│   ├── admin/          # Eski admin panel
+│   └── display/        # Eski stüdyo ekranları
 │
 ├── docs/               # Dokümantasyon
 │   ├── INDEX.md       # Doküman indeksi
@@ -87,8 +97,8 @@ cd StudioFlow
 cd backend
 npm install
 
-# Frontend kurulum
-cd ../frontend
+# Frontend kurulum (Next.js)
+cd ../frontend-next
 npm install
 ```
 
@@ -99,24 +109,24 @@ npm install
 cd backend
 npm start
 ```
-Backend: http://localhost:4141 ✓
+Backend API: http://localhost:4141 ✓
 
-**Terminal 2 - Frontend:**
+**Terminal 2 - Frontend (Next.js):**
 ```bash
-cd frontend
-npm start
+cd frontend-next
+npm run dev
 ```
-Frontend: http://localhost:4040 ✓
+Frontend: http://localhost:3000 ✓
 
 ### 3. Giriş
 
-**Admin Panel:** http://localhost:4040/admin/
+**Admin Panel:** http://localhost:3000/admin/dashboard
 - Kullanıcı: `admin`
 - Şifre: `admin123`
 
 **Display Ekranları:**
-- Studio A: http://localhost:4040/display/?studio=1
-- Studio B: http://localhost:4040/display/?studio=2
+- Studio A: http://localhost:3000/display/1
+- Studio B: http://localhost:3000/display/2
 
 ---
 
@@ -153,12 +163,20 @@ Detaylı dokümantasyon için [docs/](./docs/) klasörüne bakın:
 - **Logging:** Winston
 - **QR Code:** qrcode
 
-### Frontend
+### Frontend (Next.js 15)
+- **Framework:** Next.js 15.1.4
+- **Language:** TypeScript
+- **UI Library:** React 19
+- **Styling:** Tailwind CSS 3.x
+- **State Management:** Zustand
+- **Real-time:** Socket.IO Client
+- **HTTP Client:** Fetch API
+
+### Legacy Frontend (Static)
 - **HTML5** - Semantic markup
 - **CSS3** - Glassmorphism, Gradients
 - **JavaScript** - ES6+ Vanilla JS
 - **Socket.IO Client** - Real-time updates
-- **QRCode.js** - QR code generation
 - **http-server** - Static file server
 
 ### DevOps
