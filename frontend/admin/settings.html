@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Studio Display Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Studio Display</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard">Dashboard</a></li>
+                <li><a href="lessons">Lessons</a></li>
+                <li><a href="instructors">Instructors</a></li>
+                <li><a href="contents">Content</a></li>
+                <li><a href="screens">Screens</a></li>
+                <li class="active"><a href="settings">Settings</a></li>
+                <li><a href="#" id="logout-btn">Logout</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1>Settings</h1>
+            </div>
+
+            <div class="section">
+                <form id="settings-form">
+                    <div class="settings-group">
+                        <h3>Display Settings</h3>
+
+                        <div class="form-group">
+                            <label for="ShowInstructorPhoto">Show Instructor Photo</label>
+                            <select id="ShowInstructorPhoto">
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="QRCodeSize">QR Code Size (pixels)</label>
+                            <input type="number" id="QRCodeSize" min="100" max="500">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="CountdownWarningMinutes">Countdown Warning (minutes)</label>
+                            <input type="number" id="CountdownWarningMinutes" min="1" max="30">
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>Content Settings</h3>
+
+                        <div class="form-group">
+                            <label for="ShowAdsWhenClassActive">Show Ads When Class Active</label>
+                            <select id="ShowAdsWhenClassActive">
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="AdIntervalMinutes">Ad Interval (minutes)</label>
+                            <input type="number" id="AdIntervalMinutes" min="1" max="60">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="AdDurationSeconds">Ad Duration (seconds)</label>
+                            <input type="number" id="AdDurationSeconds" min="5" max="300">
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>System Settings</h3>
+
+                        <div class="form-group">
+                            <label for="RefreshIntervalSeconds">Refresh Interval (seconds)</label>
+                            <input type="number" id="RefreshIntervalSeconds" min="5" max="60">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Settings</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/settings.js"></script>
+</body>
+</html>

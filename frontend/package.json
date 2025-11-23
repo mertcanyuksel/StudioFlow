@@ -1,0 +1,12 @@
+{
+  "name": "studio-display-frontend",
+  "version": "1.0.0",
+  "description": "Studio Display Frontend",
+  "scripts": {
+    "start": "npx http-server -p 4040 -c-1",
+    "dev": "npx http-server -p 4040 -c-1 -o"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}

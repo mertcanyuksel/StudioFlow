@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Studio Display Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Studio Display</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="active"><a href="dashboard">Dashboard</a></li>
+                <li><a href="lessons">Lessons</a></li>
+                <li><a href="instructors">Instructors</a></li>
+                <li><a href="contents">Content</a></li>
+                <li><a href="screens">Screens</a></li>
+                <li><a href="settings">Settings</a></li>
+                <li><a href="#" id="logout-btn">Logout</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1>Dashboard</h1>
+                <div class="user-info">
+                    Welcome, <span id="user-name">Admin</span>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="total-lessons">0</div>
+                        <div class="stat-label">Total Lessons</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">👨‍🏫</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="total-instructors">0</div>
+                        <div class="stat-label">Instructors</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📺</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="online-screens">0</div>
+                        <div class="stat-label">Screens Online</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🎥</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="total-contents">0</div>
+                        <div class="stat-label">Content Items</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Screen Status</h2>
+                <div id="screens-status" class="screens-grid">
+                    <div class="loading">Loading screens...</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Today's Schedule - Studio A</h2>
+                <div id="studio-a-schedule" class="schedule-list">
+                    <div class="loading">Loading schedule...</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Today's Schedule - Studio B</h2>
+                <div id="studio-b-schedule" class="schedule-list">
+                    <div class="loading">Loading schedule...</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Emergency Broadcast</h2>
+                <form id="emergency-form" class="emergency-form">
+                    <div class="form-group">
+                        <label for="emergency-message">Message</label>
+                        <input type="text" id="emergency-message" placeholder="Enter emergency message" required>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Send Emergency Broadcast</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

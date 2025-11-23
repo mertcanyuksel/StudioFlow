@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(kill:*)",
+      "Bash(xargs kill:*)",
+      "Bash(npx create-next-app:*)",
+      "Bash(frontend-next/package.json)",
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: StudioFlow - Gym Display Management System\n\nFeatures:\n- Backend API with Express.js and Socket.IO\n- Frontend with Next.js 15 and TypeScript\n- Admin schedule management with drag-drop interface\n- Media library with video/image support\n- Override system with repeat count functionality\n- Automatic video duration detection\n- Real-time display updates via WebSocket\n- Lesson and instructor management\n- QR code generation for lessons\n- Test scenario with 5-minute override sequence\n\nTech Stack:\n- Backend: Node.js, Express.js, Socket.IO\n- Frontend: Next.js 15, React, TypeScript, Tailwind CSS\n- State Management: Zustand\n- Real-time: Socket.IO\n\n🤖 Generated with Claude Code\nEOF\n)\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haftalık Program - Studio Display Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/schedule-timeline.css">
+</head>
+<body>
+    <div class="admin-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Studio Display</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard">Dashboard</a></li>
+                <li><a href="lessons">Lessons</a></li>
+                <li><a href="instructors">Instructors</a></li>
+                <li class="active"><a href="schedule">Haftalık Program</a></li>
+                <li><a href="contents">Content</a></li>
+                <li><a href="screens">Screens</a></li>
+                <li><a href="settings">Settings</a></li>
+                <li><a href="#" id="logout-btn">Logout</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1>Haftalık Program Yönetimi</h1>
+                <div class="header-controls">
+                    <select id="studio-selector" class="form-control">
+                        <option value="">Stüdyo seçiniz...</option>
+                    </select>
+                    <button class="btn btn-secondary" id="refresh-btn">🔄 Yenile</button>
+                </div>
+            </div>
+
+            <!-- Gün Seçici -->
+            <div class="day-selector" id="day-selector">
+                <div class="loading">Stüdyo seçiniz...</div>
+            </div>
+
+            <!-- Medya Havuzu ve Timeline -->
+            <div class="schedule-container">
+                <aside class="media-library">
+                    <div class="media-library-header">
+                        <h3>📁 Medya Kütüphanesi</h3>
+                        <button class="btn btn-sm btn-primary" id="add-media-btn">+ Yeni Ekle</button>
+                    </div>
+
+                    <div class="media-search">
+                        <input type="text" id="media-search" placeholder="🔍 Ara..." class="form-control">
+                    </div>
+
+                    <div class="media-list" id="media-list">
+                        <div class="loading">Medya yükleniyor...</div>
+                    </div>
+                </aside>
+
+                <!-- Timeline Container -->
+                <div class="timeline-container" id="timeline-container">
+                    <div class="loading">Stüdyo seçiniz...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Medya Yükleme Modal -->
+    <div id="media-upload-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Yeni Medya Yükle</h2>
+                <button class="close-btn" onclick="closeMediaUploadModal()">&times;</button>
+            </div>
+            <form id="media-upload-form">
+                <div class="form-group">
+                    <label for="media-title">Başlık</label>
+                    <input type="text" id="media-title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="media-file">Dosya (Video/Fotoğraf)</label>
+                    <input type="file" id="media-file" accept="image/*,video/*" required>
+                    <div id="file-preview" style="margin-top: 10px;"></div>
+                </div>
+
+                <div class="form-group" id="duration-group" style="display:none;">
+                    <label for="media-duration">Süre (saniye)</label>
+                    <input type="number" id="media-duration" min="1" placeholder="Örn: 180">
+                    <small>Video için otomatik hesaplanır</small>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeMediaUploadModal()">İptal</button>
+                    <button type="submit" class="btn btn-primary">Yükle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Çoğalt Modal -->
+    <div id="multiply-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>İçeriği Çoğalt</h2>
+                <button class="close-btn" onclick="closeMultiplyModal()">&times;</button>
+            </div>
+            <form id="multiply-form">
+                <input type="hidden" id="multiply-override-id">
+                <input type="hidden" id="multiply-media-id">
+
+                <div class="form-group">
+                    <label>Çoğaltma Tipi</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="multiply-type" value="interval" checked>
+                            Belirli aralıklarla tekrarla
+                        </label>
+                        <label>
+                            <input type="radio" name="multiply-type" value="sametime_alldays">
+                            Tüm günlere aynı saatte kopyala
+                        </label>
+                    </div>
+                </div>
+
+                <div id="interval-options">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="multiply-time-start">Başlangıç Saati</label>
+                            <input type="time" id="multiply-time-start" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="multiply-time-end">Bitiş Saati</label>
+                            <input type="time" id="multiply-time-end" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="multiply-interval">Tekrar Sıklığı (dakika)</label>
+                        <input type="number" id="multiply-interval" min="1" value="30" placeholder="Örn: 30">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="multiply-start-date">Başlangıç Tarihi</label>
+                        <input type="date" id="multiply-start-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="multiply-end-date">Bitiş Tarihi</label>
+                        <input type="date" id="multiply-end-date" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="multiply-duration">İçerik Süresi (saniye)</label>
+                    <input type="number" id="multiply-duration" min="1" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeMultiplyModal()">İptal</button>
+                    <button type="submit" class="btn btn-primary">Uygula</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div id="context-menu" class="context-menu" style="display: none;">
+        <ul>
+            <li onclick="editOverride()">✏️ Düzenle</li>
+            <li onclick="showMultiplyModal()">📊 Çoğalt...</li>
+            <li onclick="deleteOverride()">🗑️ Sil</li>
+        </ul>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/schedule.js"></script>
+</body>
+</html>

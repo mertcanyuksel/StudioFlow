@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Display</title>
+    <link rel="stylesheet" href="css/display.css">
+</head>
+<body>
+    <div id="app" class="container">
+        <!-- Current Lesson Display -->
+        <div id="lesson-display" class="lesson-display" style="display: none;">
+            <div class="main-content">
+                <div class="lesson-header">
+                    <h1 id="lesson-name" class="lesson-name">Gece Meditasyon</h1>
+                    <div id="countdown-timer" class="countdown-timer">25:00</div>
+                </div>
+
+                <p id="lesson-description" class="lesson-description">Günün stresini atan derin meditasyon seansı</p>
+
+                <div class="content-grid">
+                    <div class="instructor-card">
+                        <img id="instructor-photo" src="https://ui-avatars.com/api/?name=Instructor&size=200&background=random" alt="Instructor" class="instructor-photo">
+                        <div class="instructor-info">
+                            <div class="instructor-label">Eğitmen</div>
+                            <div id="instructor-name" class="instructor-name">Can Özkan</div>
+                        </div>
+                    </div>
+
+                    <div class="qr-card">
+                        <div class="qr-container">
+                            <img id="qr-code" src="" alt="QR Code" style="max-width: 200px; max-height: 200px; display: none;">
+                        </div>
+                        <div class="qr-label">Kaydol için QR'ı tara</div>
+                    </div>
+                </div>
+
+                <div class="time-info">
+                    <div class="time-item">
+                        <span class="time-label">Başlangıç</span>
+                        <span id="start-time" class="time-value">23:00</span>
+                    </div>
+                    <div class="time-divider"></div>
+                    <div class="time-item">
+                        <span class="time-label">Bitiş</span>
+                        <span id="end-time" class="time-value">23:59</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Lesson Display -->
+        <div id="no-lesson-display" class="no-lesson-display">
+            <div class="no-lesson-content">
+                <div class="empty-icon">📅</div>
+                <h2>Şu An Ders Yok</h2>
+                <div id="next-lesson-info" class="next-lesson-info" style="display: none;">
+                    <p class="next-label">Sıradaki Ders</p>
+                    <h3 id="next-lesson-name">Power Pilates</h3>
+                    <p id="next-lesson-time">14:00'da başlıyor</p>
+                    <p id="next-lesson-instructor">Eğitmen: Mehmet Demir</p>
+                </div>
+                <div id="no-upcoming-message" class="no-upcoming-message" style="display: none;">
+                    <p>Bugün için başka ders yok</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Display (Ads) -->
+        <div id="content-display" class="content-display" style="display: none;">
+            <video id="content-video" class="content-media" style="display: none;"></video>
+            <img id="content-image" class="content-media" style="display: none;">
+        </div>
+
+        <!-- Emergency Overlay -->
+        <div id="emergency-overlay" class="emergency-overlay" style="display: none;">
+            <div class="emergency-content">
+                <div class="emergency-icon">⚠️</div>
+                <div id="emergency-message" class="emergency-message"></div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div id="studio-name" class="studio-name">Studio A</div>
+            <div id="status-indicator" class="status-indicator">
+                <span class="status-dot"></span>
+                <span id="status-text">Bağlanıyor...</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/socketClient.js"></script>
+    <script src="js/display.js"></script>
+</body>
+</html>
